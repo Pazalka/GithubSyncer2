@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מערכת עיבוד קבצי אקסל</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+</head>
+<body data-bs-theme="dark">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">מערכת עיבוד קבצי אקסל</h1>
+        
+        <div class="card">
+            <div class="card-body">
+                <form id="uploadForm">
+                    <div class="row">
+                        <!-- File upload fields -->
+                        {% for i in range(1, 10) %}
+                        <div class="col-md-4 mb-3">
+                            <div class="form-group">
+                                <label for="file{{i}}" class="form-label">קובץ {{i}}</label>
+                                <input type="file" class="form-control" id="file{{i}}" name="file{{i}}" accept=".xlsx,.xls" required>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="spinner-border spinner-border-sm d-none" id="loadingSpinner" role="status" aria-hidden="true"></span>
+                            עבד קבצים
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Progress and Status -->
+        <div class="alert alert-info mt-3 d-none" id="statusMessage" role="alert"></div>
+        <div class="alert alert-danger mt-3 d-none" id="errorMessage" role="alert"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

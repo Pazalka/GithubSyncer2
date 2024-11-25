@@ -1,0 +1,37 @@
+/* RTL Support */
+body {
+    text-align: right;
+}
+
+/* Custom styling for file inputs */
+.form-control[type="file"] {
+    padding: 0.375rem;
+}
+
+/* Improved spacing for status messages */
+.alert {
+    margin-top: 1rem;
+}
+
+/* Button loading state */
+.btn .spinner-border {
+    margin-left: 0.5rem;
+}
+
+/* Card styling */
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form group spacing */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+}
