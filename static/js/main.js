@@ -19,23 +19,18 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const formData = new FormData(form);
             
-            // Collect all files
-            let hasFiles = false;
-            for (let i = 1; i <= 9; i++) {
-                const fileInput = document.getElementById(`file${i}`);
-                const files = fileInput.files;
-                if (files && files.length > 0) {
-                    hasFiles = true;
-                    // Add all selected files to formData with unique names
-                    Array.from(files).forEach((file, index) => {
-                        formData.append(`file${i}_${index}`, file);
-                    });
-                }
-            }
-
-            if (!hasFiles) {
+            // Get all selected files
+            const fileInput = document.getElementById('files');
+            const files = fileInput.files;
+            
+            if (!files || files.length === 0) {
                 throw new Error('אנא בחר לפחות קובץ אחד לעיבוד');
             }
+
+            // Add all files to formData
+            Array.from(files).forEach((file, index) => {
+                formData.append(`file_${index}`, file);
+            });
 
             statusMessage.textContent = 'מעבד קבצים...';
             statusMessage.classList.remove('d-none');
