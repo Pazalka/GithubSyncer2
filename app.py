@@ -27,22 +27,21 @@ def upload_files():
         uploaded_files = []
         
         # Collect all uploaded files
-        for i in range(1, 10):  # 9 files
-            file_key = f'file{i}'
-            if file_key not in request.files:
-                return jsonify({'error': f'קובץ {i} חסר'}), 400
-            
-            file = request.files[file_key]
-            if file.filename == '':
-                return jsonify({'error': f'לא נבחר קובץ {i}'}), 400
+        files_found = False
+        for key in request.files:
+            file = request.files[key]
+            if file and file.filename:
+                if not allowed_file(file.filename):
+                    return jsonify({'error': f'סוג קובץ לא נתמך עבור {file.filename}'}), 400
                 
-            if not allowed_file(file.filename):
-                return jsonify({'error': f'סוג קובץ לא נתמך עבור קובץ {i}'}), 400
-            
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(filepath)
-            uploaded_files.append(filepath)
+                filename = secure_filename(file.filename)
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filepath)
+                uploaded_files.append(filepath)
+                files_found = True
+        
+        if not files_found:
+            return jsonify({'error': 'לא נבחרו קבצים לעיבוד'}), 400
 
         # Process the files
         output_file = process_excel_files(uploaded_files)

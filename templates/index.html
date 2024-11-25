@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מערכת עיבוד קבצי אקסל</title>
+    <title>אוטומציית האקסלים של יובל</title>
     <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
 </head>
 <body data-bs-theme="dark">
     <div class="container mt-5">
-        <h1 class="text-center mb-4">מערכת עיבוד קבצי אקסל</h1>
+        <h1 class="text-center mb-4">אוטומציית האקסלים של יובל</h1>
         
         <div class="card">
             <div class="card-body">
@@ -20,7 +20,7 @@
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="file{{i}}" class="form-label">קובץ {{i}}</label>
-                                <input type="file" class="form-control" id="file{{i}}" name="file{{i}}" accept=".xlsx,.xls" required>
+                                <input type="file" class="form-control" id="file{{i}}" name="file{{i}}" accept=".xlsx,.xls" multiple>
                             </div>
                         </div>
                         {% endfor %}
